@@ -35,3 +35,22 @@ def convert_sqft_to_nm(x):
 df4=df3.copy()
 df4['total_sqft'] = df4['total_sqft'].apply(convert_sqft_to_nm)
 df4.head(50)
+
+#FEATURE ENGINNERING & DIMENTIONALITY REDUCTION TECHNIQUES
+df4.head(3)
+
+df5=df4.copy()
+
+# new feature
+df5['price_per_sqrft'] = df5['price']*100000/df5['total_sqft']
+# len(df5.location.unique())
+df5.location=df5.location.apply(lambda x: x.strip())
+
+location_stats = df5.groupby('location')['location'].agg('count').sort_values(ascending=False)
+
+location_stats_less_than_10 =location_stats[location_stats<=10]
+location_stats_less_than_10
+
+df5.location = df5.location.apply(lambda x: 'other' if x in location_stats_less_than_10 else x)
+# Eliminating those locations which has location stats less than 10
+len(df5.location.unique())
