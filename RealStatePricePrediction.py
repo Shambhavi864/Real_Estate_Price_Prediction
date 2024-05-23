@@ -37,8 +37,6 @@ df4['total_sqft'] = df4['total_sqft'].apply(convert_sqft_to_nm)
 df4.head(50)
 
 #FEATURE ENGINNERING & DIMENTIONALITY REDUCTION TECHNIQUES
-df4.head(3)
-
 df5=df4.copy()
 
 # new feature
