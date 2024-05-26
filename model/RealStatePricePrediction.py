@@ -146,7 +146,7 @@ def predict_price(location, sqft, bath, bhk):
         x[loc_index] = 1
     return lr_clf.predict([x])[0]
 
-#importing a picle file
+#importing a pickle file
 import pickle
 with open('banglore_home_price_model.pickle', 'wb') as f:
     pickle.dump(lr_clf, f)
